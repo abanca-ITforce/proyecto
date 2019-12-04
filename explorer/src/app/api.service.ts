@@ -6,18 +6,24 @@ import { map } from "rxjs/operators";
   providedIn: "root"
 })
 export class ApiService {
-  private endPoint = "https://api.worldbank.org/v2/country";
+  private countryEndPoint = "https://api.worldbank.org/v2/country";
+  private regionEndPoint = "https://api.worldbank.org/v2/region";
   private format = "?per_page=1000&format=json";
 
   constructor(private httpClient: HttpClient) {}
 
   getAllCountries$() {
-    const url = this.endPoint + this.format;
+    const url = this.countryEndPoint + this.format;
     return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
   }
 
   getCountryById$(countryId) {
-    const url = this.endPoint + "/" + countryId + this.format;
+    const url = this.countryEndPoint + "/" + countryId + this.format;
     return this.httpClient.get<any>(url).pipe(map(result => result[1][0]));
+  }
+
+  getAllRegions$() {
+    const url = this.regionEndPoint + this.format;
+    return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
   }
 }
