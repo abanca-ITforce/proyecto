@@ -26,4 +26,14 @@ export class ApiService {
     const url = this.regionEndPoint + this.format;
     return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
   }
+  getRegionByCode(regionCode: any) {
+    const url = this.regionEndPoint + "/" + regionCode + this.format;
+    return this.httpClient.get<any>(url).pipe(map(result => result[1][0]));
+  }
+
+  getCountriesByRegionCode(regionCode: any) {
+    const url = this.countryEndPoint + this.format + "&region=" + regionCode;
+    console.log({ url });
+    return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
+  }
 }
