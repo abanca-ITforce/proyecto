@@ -1,0 +1,52 @@
+<form [formGroup]="filterForm" novalidate>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Filter countriesk</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            />
+            <mat-error
+              *ngIf="taskForm.controls['description'].hasError('required')"
+            >
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select
+              placeholder="Income level"
+              formControlName="incomeLevel"
+            >
+              <mat-option
+                *ngFor="let incomeLevel of incomeLevels"
+                [value]="incomeLevel.id"
+              >
+                {{ incomeLevel.value }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (ngSubmit)="onSubmit()"
+      >
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -13,3 +13,4 @@ ng g s api
 ng g c country/country-card
 ng g c regions/regionsList
 ng g c regions/region/region-card
+ng g c search/filter-form
