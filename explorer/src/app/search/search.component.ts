@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -7,11 +8,14 @@ import { ApiService } from '../api.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  countries: any[];
+  countries$: Observable<any[]>;
+  incomeLevels$: Observable<any[]>;
 
   constructor(private api: ApiService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.incomeLevels$ = this.api.getIncomeLevels$();
+  }
 
   onFilter(filter) {}
 }
