@@ -1,14 +1,14 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ApiService {
-  private countryEndPoint = "https://api.worldbank.org/v2/country";
-  private regionEndPoint = "https://api.worldbank.org/v2/region";
-  private format = "?per_page=1000&format=json";
+  private countryEndPoint = 'https://api.worldbank.org/v2/country';
+  private regionEndPoint = 'https://api.worldbank.org/v2/region';
+  private format = '?per_page=1000&format=json';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -18,7 +18,7 @@ export class ApiService {
   }
 
   getCountryById$(countryId) {
-    const url = this.countryEndPoint + "/" + countryId + this.format;
+    const url = this.countryEndPoint + '/' + countryId + this.format;
     return this.httpClient.get<any>(url).pipe(map(result => result[1][0]));
   }
 
@@ -27,12 +27,12 @@ export class ApiService {
     return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
   }
   getRegionByCode(regionCode: any) {
-    const url = this.regionEndPoint + "/" + regionCode + this.format;
+    const url = this.regionEndPoint + '/' + regionCode + this.format;
     return this.httpClient.get<any>(url).pipe(map(result => result[1][0]));
   }
 
   getCountriesByRegionCode(regionCode: any) {
-    const url = this.countryEndPoint + this.format + "&region=" + regionCode;
+    const url = this.countryEndPoint + this.format + '&region=' + regionCode;
     console.log({ url });
     return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
   }
