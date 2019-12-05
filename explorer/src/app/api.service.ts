@@ -34,6 +34,18 @@ export class ApiService {
 
   getCountriesByRegionCode(regionCode: any) {
     const url = this.countryEndPoint + this.format + '&region=' + regionCode;
+    return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
+  }
+
+  getCountriesByFilter(filter: any) {
+    // https://api.worldbank.org/v2/country?
+    // lendingType = LNX &
+    // incomeLevel = HIC &
+    // region = ECS & per_page=1000 & format=json
+    let url = this.countryEndPoint + this.format; // + '&region=' + regionCode;
+    if (filter.incomeLevel) {
+      url += '&incomeLevel=' + filter.incomeLevel;
+    }
     console.log({ url });
     return this.httpClient.get<any[]>(url).pipe(map(result => result[1]));
   }

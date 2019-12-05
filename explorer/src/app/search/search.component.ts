@@ -17,5 +17,7 @@ export class SearchComponent implements OnInit {
     this.incomeLevels$ = this.api.getIncomeLevels$();
   }
 
-  onFilter(filter) {}
+  onFilter(filter) {
+    this.countries$ = this.api.getCountriesByFilter(filter);
+  }
 }
